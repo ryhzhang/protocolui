@@ -15,6 +15,11 @@
 		495DA04A2249B05600601C80 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495DA0482249B05600601C80 /* MainMenu.xib */; };
 		495DA0562249B05600601C80 /* PUKDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DA0552249B05600601C80 /* PUKDemoTests.swift */; };
 		495DA0612249B05600601C80 /* PUKDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DA0602249B05600601C80 /* PUKDemoUITests.swift */; };
+		495DA07C2249B1DB00601C80 /* DemoUIProtocols.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495DA0732249B1DA00601C80 /* DemoUIProtocols.framework */; };
+		495DA0832249B1DB00601C80 /* DemoUIProtocolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DA0822249B1DB00601C80 /* DemoUIProtocolsTests.swift */; };
+		495DA0852249B1DB00601C80 /* DemoUIProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 495DA0752249B1DA00601C80 /* DemoUIProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		495DA0882249B1DB00601C80 /* DemoUIProtocols.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495DA0732249B1DA00601C80 /* DemoUIProtocols.framework */; };
+		495DA0892249B1DB00601C80 /* DemoUIProtocols.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 495DA0732249B1DA00601C80 /* DemoUIProtocols.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +51,49 @@
 			remoteGlobalIDString = 495DA0232249B01A00601C80;
 			remoteInfo = PUKit;
 		};
+		495DA0862249B1DB00601C80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 495DA01B2249B01A00601C80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 495DA0722249B1DA00601C80;
+			remoteInfo = DemoUIProtocols;
+		};
+		495DA0912249B1F800601C80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 495DA01B2249B01A00601C80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 495DA0722249B1DA00601C80;
+			remoteInfo = DemoUIProtocols;
+		};
+		495DA0932249B20500601C80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 495DA01B2249B01A00601C80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 495DA0232249B01A00601C80;
+			remoteInfo = PUKit;
+		};
+		495DA0952249B27300601C80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 495DA01B2249B01A00601C80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 495DA0232249B01A00601C80;
+			remoteInfo = PUKit;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		495DA08D2249B1DB00601C80 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				495DA0892249B1DB00601C80 /* DemoUIProtocols.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		495DA0242249B01A00601C80 /* PUKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PUKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +114,12 @@
 		495DA05C2249B05600601C80 /* PUKDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PUKDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		495DA0602249B05600601C80 /* PUKDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUKDemoUITests.swift; sourceTree = "<group>"; };
 		495DA0622249B05600601C80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		495DA0732249B1DA00601C80 /* DemoUIProtocols.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DemoUIProtocols.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		495DA0752249B1DA00601C80 /* DemoUIProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoUIProtocols.h; sourceTree = "<group>"; };
+		495DA0762249B1DA00601C80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		495DA07B2249B1DB00601C80 /* DemoUIProtocolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoUIProtocolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		495DA0822249B1DB00601C80 /* DemoUIProtocolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoUIProtocolsTests.swift; sourceTree = "<group>"; };
+		495DA0842249B1DB00601C80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495DA0882249B1DB00601C80 /* DemoUIProtocols.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +160,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		495DA0702249B1DA00601C80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		495DA0782249B1DB00601C80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				495DA07C2249B1DB00601C80 /* DemoUIProtocols.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -117,6 +186,8 @@
 				495DA0262249B01A00601C80 /* PUKit */,
 				495DA0312249B01A00601C80 /* PUKitTests */,
 				495DA05F2249B05600601C80 /* PUKDemoUITests */,
+				495DA0742249B1DA00601C80 /* DemoUIProtocols */,
+				495DA0812249B1DB00601C80 /* DemoUIProtocolsTests */,
 				495DA0252249B01A00601C80 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,6 +200,8 @@
 				495DA0422249B05500601C80 /* PUKDemo.app */,
 				495DA0512249B05600601C80 /* PUKDemoTests.xctest */,
 				495DA05C2249B05600601C80 /* PUKDemoUITests.xctest */,
+				495DA0732249B1DA00601C80 /* DemoUIProtocols.framework */,
+				495DA07B2249B1DB00601C80 /* DemoUIProtocolsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +254,24 @@
 			path = PUKDemoUITests;
 			sourceTree = "<group>";
 		};
+		495DA0742249B1DA00601C80 /* DemoUIProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				495DA0752249B1DA00601C80 /* DemoUIProtocols.h */,
+				495DA0762249B1DA00601C80 /* Info.plist */,
+			);
+			path = DemoUIProtocols;
+			sourceTree = "<group>";
+		};
+		495DA0812249B1DB00601C80 /* DemoUIProtocolsTests */ = {
+			isa = PBXGroup;
+			children = (
+				495DA0822249B1DB00601C80 /* DemoUIProtocolsTests.swift */,
+				495DA0842249B1DB00601C80 /* Info.plist */,
+			);
+			path = DemoUIProtocolsTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -189,6 +280,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				495DA0352249B01A00601C80 /* PUKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		495DA06E2249B1DA00601C80 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				495DA0852249B1DB00601C80 /* DemoUIProtocols.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,11 +337,13 @@
 				495DA03E2249B05500601C80 /* Sources */,
 				495DA03F2249B05500601C80 /* Frameworks */,
 				495DA0402249B05500601C80 /* Resources */,
+				495DA08D2249B1DB00601C80 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				495DA06D2249B09100601C80 /* PBXTargetDependency */,
+				495DA0872249B1DB00601C80 /* PBXTargetDependency */,
 			);
 			name = PUKDemo;
 			productName = PUKDemo;
@@ -285,6 +386,44 @@
 			productReference = 495DA05C2249B05600601C80 /* PUKDemoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		495DA0722249B1DA00601C80 /* DemoUIProtocols */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 495DA08A2249B1DB00601C80 /* Build configuration list for PBXNativeTarget "DemoUIProtocols" */;
+			buildPhases = (
+				495DA06E2249B1DA00601C80 /* Headers */,
+				495DA06F2249B1DA00601C80 /* Sources */,
+				495DA0702249B1DA00601C80 /* Frameworks */,
+				495DA0712249B1DA00601C80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				495DA0962249B27300601C80 /* PBXTargetDependency */,
+			);
+			name = DemoUIProtocols;
+			productName = DemoUIProtocols;
+			productReference = 495DA0732249B1DA00601C80 /* DemoUIProtocols.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		495DA07A2249B1DB00601C80 /* DemoUIProtocolsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 495DA08E2249B1DB00601C80 /* Build configuration list for PBXNativeTarget "DemoUIProtocolsTests" */;
+			buildPhases = (
+				495DA0772249B1DB00601C80 /* Sources */,
+				495DA0782249B1DB00601C80 /* Frameworks */,
+				495DA0792249B1DB00601C80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				495DA0942249B20500601C80 /* PBXTargetDependency */,
+				495DA0922249B1F800601C80 /* PBXTargetDependency */,
+			);
+			name = DemoUIProtocolsTests;
+			productName = DemoUIProtocolsTests;
+			productReference = 495DA07B2249B1DB00601C80 /* DemoUIProtocolsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -312,6 +451,13 @@
 						CreatedOnToolsVersion = 10.1;
 						TestTargetID = 495DA0412249B05500601C80;
 					};
+					495DA0722249B1DA00601C80 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					495DA07A2249B1DB00601C80 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 495DA0412249B05500601C80;
+					};
 				};
 			};
 			buildConfigurationList = 495DA01E2249B01A00601C80 /* Build configuration list for PBXProject "PUKit" */;
@@ -332,6 +478,8 @@
 				495DA0412249B05500601C80 /* PUKDemo */,
 				495DA0502249B05600601C80 /* PUKDemoTests */,
 				495DA05B2249B05600601C80 /* PUKDemoUITests */,
+				495DA0722249B1DA00601C80 /* DemoUIProtocols */,
+				495DA07A2249B1DB00601C80 /* DemoUIProtocolsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -368,6 +516,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		495DA05A2249B05600601C80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		495DA0712249B1DA00601C80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		495DA0792249B1DB00601C80 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -416,6 +578,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		495DA06F2249B1DA00601C80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		495DA0772249B1DB00601C80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				495DA0832249B1DB00601C80 /* DemoUIProtocolsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -438,6 +615,26 @@
 			isa = PBXTargetDependency;
 			target = 495DA0232249B01A00601C80 /* PUKit */;
 			targetProxy = 495DA06C2249B09100601C80 /* PBXContainerItemProxy */;
+		};
+		495DA0872249B1DB00601C80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 495DA0722249B1DA00601C80 /* DemoUIProtocols */;
+			targetProxy = 495DA0862249B1DB00601C80 /* PBXContainerItemProxy */;
+		};
+		495DA0922249B1F800601C80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 495DA0722249B1DA00601C80 /* DemoUIProtocols */;
+			targetProxy = 495DA0912249B1F800601C80 /* PBXContainerItemProxy */;
+		};
+		495DA0942249B20500601C80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 495DA0232249B01A00601C80 /* PUKit */;
+			targetProxy = 495DA0932249B20500601C80 /* PBXContainerItemProxy */;
+		};
+		495DA0962249B27300601C80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 495DA0232249B01A00601C80 /* PUKit */;
+			targetProxy = 495DA0952249B27300601C80 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -782,6 +979,98 @@
 			};
 			name = Release;
 		};
+		495DA08B2249B1DB00601C80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UBF8T346G9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = DemoUIProtocols/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = hz.labs.DemoUIProtocols;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		495DA08C2249B1DB00601C80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UBF8T346G9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = DemoUIProtocols/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = hz.labs.DemoUIProtocols;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		495DA08F2249B1DB00601C80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = UBF8T346G9;
+				INFOPLIST_FILE = DemoUIProtocolsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = hz.labs.DemoUIProtocolsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PUKDemo.app/Contents/MacOS/PUKDemo";
+			};
+			name = Debug;
+		};
+		495DA0902249B1DB00601C80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = UBF8T346G9;
+				INFOPLIST_FILE = DemoUIProtocolsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = hz.labs.DemoUIProtocolsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PUKDemo.app/Contents/MacOS/PUKDemo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -835,6 +1124,24 @@
 			buildConfigurations = (
 				495DA06A2249B05600601C80 /* Debug */,
 				495DA06B2249B05600601C80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		495DA08A2249B1DB00601C80 /* Build configuration list for PBXNativeTarget "DemoUIProtocols" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				495DA08B2249B1DB00601C80 /* Debug */,
+				495DA08C2249B1DB00601C80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		495DA08E2249B1DB00601C80 /* Build configuration list for PBXNativeTarget "DemoUIProtocolsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				495DA08F2249B1DB00601C80 /* Debug */,
+				495DA0902249B1DB00601C80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
