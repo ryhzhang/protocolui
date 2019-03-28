@@ -1,0 +1,13 @@
+{
+  "commitish" : "3.5.2",
+  "Mac" : [
+    {
+      "name" : "CocoaLumberjackSwift",
+      "hash" : "b80f168ef654b4a8aa762db744f48eac879e9a8a30c62cf903e658cb736c83ff"
+    },
+    {
+      "name" : "CocoaLumberjack",
+      "hash" : "f0c2efda6b5732d17f4cb5ee730ec3584af66cb614017f30d948fb84ef025004"
+    }
+  ]
+}
