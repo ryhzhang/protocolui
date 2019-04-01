@@ -13,6 +13,4 @@ public protocol RootLogViewerProtocol: PUKLayoutProtocol {
   
   var navigationSupervisor: NavigationPaneProtocol? { get }
   var viewerCanvasSupervisor: ViewerCanvasProtocol? { get }
-
-  func deriveView() -> NSView?
 }

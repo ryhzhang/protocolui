@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CocoaLumberjackSwift
 import DemoUIImpl
 
 @NSApplicationMain
@@ -23,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     window = mainWindow
-
+    DDLog.sharedInstance.log(asynchronous: true, message: DDLogMessage(message: "Hello", level: .debug, flag: .info, context: 0, file: "", function: "", line: 0, tag: nil, options: .copyFile, timestamp: Date()))
     rootVC = RootSupervisorVC(nibName: nil, bundle: nil, forWindow: window)
     window.delegate = rootVC
 

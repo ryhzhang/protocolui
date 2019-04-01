@@ -10,13 +10,14 @@ import DemoUIProtocols
 import Foundation
 
 public class NavigationSupervisorVC: NSViewController {
-  public weak var delegate: NavigationPaneDelegate?
 
   private var containerView: NSView?
-  private var navigationItems: [NavigationPaneElementProtocol]
+  
+  public weak var delegate: NavigationPaneDelegate?
+  public var elements: [NavigationPaneElementProtocol]
 
   public override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
-    navigationItems = [NavigationPaneElementProtocol]()
+    elements = [NavigationPaneElementProtocol]()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
     buildNavigationMenu()
@@ -30,7 +31,7 @@ public class NavigationSupervisorVC: NSViewController {
     CanvasMode.allCases.forEach { mode in
       let item = NavigationItemVC(nibName: nil, bundle: nil, canvasMode: mode)
       item.delegate = self
-      navigationItems.append(item)
+      elements.append(item)
     }
   }
 }
@@ -48,8 +49,8 @@ extension NavigationSupervisorVC: NavigationPaneProtocol {
     // Arrange menu items with the given frame
 
     // Layout Type: is vertical, equal height and width.
-    for (index, element) in navigationItems.enumerated() {
-      let itemFrame = calculateItemRect(forIndex: index, totalElements: navigationItems.count, within: frame)
+    for (index, element) in elements.enumerated() {
+      let itemFrame = calculateItemRect(forIndex: index, totalElements: elements.count, within: frame)
       element.arrange(with: itemFrame)
     }
   }
@@ -63,7 +64,7 @@ extension NavigationSupervisorVC: NavigationPaneProtocol {
 
       containerView = view
 
-      navigationItems.forEach { item in
+      elements.forEach { item in
         if let currentView = item.deriveView() {
           containerView?.addSubview(currentView)
         }

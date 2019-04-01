@@ -22,16 +22,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DemoUIImpl/Supervisors/ViewerCanvasSupervisorVC.swift"
+            timestampString = "575851406.439082"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "setMode(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DemoUIImpl/Supervisors/ViewerCanvasSupervisorVC.swift"
-            timestampString = "575441249.826524"
+            timestampString = "575851406.439474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "setMode(to:)"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "init(dataPoints:divisionInSec:canvasFrame:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

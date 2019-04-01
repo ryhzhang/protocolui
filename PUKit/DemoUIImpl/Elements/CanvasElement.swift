@@ -24,12 +24,13 @@ public class CanvasElement: NSViewController {
   }
 }
 
-extension CanvasElement:  ViewerCanvasElementProtocol {
+extension CanvasElement: ViewerCanvasElementProtocol {
+
   public func deriveView() -> NSView? {
     if itemView == nil {
       itemView = SimpleRectView(frame: NSMakeRect(0, 0, 0, 0))
       itemView?.wantsLayer = true
-      itemView?.layer?.borderWidth = 2
+      itemView?.layer?.borderWidth = 1
       itemView?.layer?.borderColor = NSColor.darkGray.cgColor
       itemView?.layerContentsRedrawPolicy = .onSetNeedsDisplay
 
@@ -37,7 +38,7 @@ extension CanvasElement:  ViewerCanvasElementProtocol {
       case "mainThread":
         itemView?.layer?.backgroundColor = NSColor.red.cgColor
       default:
-        itemView?.layer?.backgroundColor = NSColor.gray.cgColor
+        itemView?.layer?.backgroundColor = NSColor.white.cgColor
       }
     }
 
@@ -51,5 +52,23 @@ extension CanvasElement:  ViewerCanvasElementProtocol {
 
     itemView?.setFrameOrigin(frame.origin)
     itemView?.setFrameSize(frame.size)
+  }
+
+  public func loadingAnimation(to targetFrame: NSRect) {
+    deriveView()?.setFrameOrigin(targetFrame.origin)
+
+    NSAnimationContext.runAnimationGroup { context in
+      context.duration = entity.threadName == "mainThread" ? 1 : 0.3
+      deriveView()?.animator().setFrameSize(targetFrame.size)
+    }
+  }
+
+  public func transitionAnimation(to targetFrame: NSRect) {
+
+    NSAnimationContext.runAnimationGroup { context in
+      context.duration = 0.5
+      deriveView()?.animator().setFrameOrigin(targetFrame.origin)
+      deriveView()?.animator().setFrameSize(targetFrame.size)
+    }
   }
 }

@@ -14,5 +14,6 @@ public protocol NavigationPaneDelegate: NSObjectProtocol {
 }
 
 public protocol NavigationPaneProtocol: PUKLayoutProtocol {
+  var elements: [NavigationPaneElementProtocol] { get set }
   var delegate: NavigationPaneDelegate? { get set }
 }

@@ -8,22 +8,23 @@
 
 import DemoUIProtocols
 import DemoCoreImpl
+import DemoReplacementUIImpl
 import Foundation
 
 private struct Constants {
-  static let elementsCount: UInt = 2000
+  static let elementsCount: UInt = 8000
 }
 
 public final class ViewerCanvasSupervisorVC: NSViewController {
   private var containerView: NSView?
-  private var contentElements: Array<ViewerCanvasElementProtocol>
+  public var elements: [ViewerCanvasElementProtocol]
 
   private var datasource: SimpleDemoDatasource?
   private var currentCanvasMode: CanvasMode
 
   override public init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
     currentCanvasMode = .histogram
-    contentElements = Array<ViewerCanvasElementProtocol>()
+    elements = [ViewerCanvasElementProtocol]()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
@@ -41,52 +42,38 @@ extension ViewerCanvasSupervisorVC: ViewerCanvasProtocol {
     containerView?.setFrameOrigin(frame.origin)
     containerView?.setFrameSize(frame.size)
 
-    var bucket = [Int]()
-    let maxBucketSize = 100
-
-    for (index, _) in contentElements.enumerated() {
-      bucket.append(index)
-      if bucket.count == maxBucketSize {
-        animateLayout(for: bucket)
-        bucket.removeAll(keepingCapacity: true)
-      }
-    }
-
-    animateLayout(for: bucket)
+    animateLayout(isInitialLoad: false)
   }
 
   public func setMode(to canvasMode: CanvasMode) {
 
     currentCanvasMode = canvasMode
 
-    datasource = SimpleDemoDatasource.createDatasourceUsingRandomData(with: Constants.elementsCount)
-    contentElements.removeAll()
-    deriveView()?.subviews.removeAll()
-
-    let newElementProtocols: [ViewerCanvasElementProtocol] = datasource?.fetchItems().map { CanvasElement(with: $0) } ?? []
-    contentElements.append(contentsOf: newElementProtocols)
-    let newElementViews: [NSView] = contentElements.compactMap { $0.deriveView() }
-    deriveView()?.subviews.append(contentsOf: newElementViews)
-
-    var bucket = [Int]()
-    let maxBucketSize = 10
-
-    for (index, _) in contentElements.enumerated() {
-      bucket.append(index)
-      if bucket.count == maxBucketSize {
-        animateLayout(for: bucket)
-        bucket.removeAll(keepingCapacity: true)
-      }
+    var datasourceDidChange = false
+    if datasource == nil {
+      datasource = SimpleDemoDatasource.createDatasourceUsingRandomData(with: Constants.elementsCount)
+      datasourceDidChange = true
     }
 
-    animateLayout(for: bucket)
+    if datasourceDidChange {
+      elements.removeAll()
+      deriveView()?.subviews.removeAll()
 
-    // Raise didInsert
-    // elementsDidInsert(elementsInserted: newElementProtocols)
+      let newElementProtocols: [ViewerCanvasElementProtocol] = datasource?.fetchItems().map { DIFactory.createInstanceOfCanvasElement(with: $0) } ?? []
+      elements.append(contentsOf: newElementProtocols)
+      let newElementViews: [NSView] = elements.compactMap { $0.deriveView() }
+      deriveView()?.subviews.append(contentsOf: newElementViews)
+
+      // Raise didInsert
+      elementsDidInsert(elementsInserted: newElementProtocols)
+    }
+    else {
+      animateLayout(isInitialLoad: false)
+    }
   }
 
   public func elementsDidInsert(elementsInserted: [ViewerCanvasElementProtocol]) {
-    // animateLayout()
+    animateLayout(isInitialLoad: true)
   }
 
   public func elementsDidRemove(elementsRemoved: [ViewerCanvasElementProtocol]) {
@@ -114,39 +101,36 @@ extension ViewerCanvasSupervisorVC: ViewerCanvasProtocol {
     return containerView
   }
 
-  private func animateLayout(for elementsAt: [Int]) {
-    if currentCanvasMode == .grid,
-      let parentFrame = deriveView()?.frame {
+  private func animateLayout(isInitialLoad: Bool) {
+    guard let parentFrame = deriveView()?.frame else {
+      return
+    }
 
-      let layout = Layout.createLayout(for: currentCanvasMode, elementCount: contentElements.count, canvasFrame: parentFrame)
+    var layout: Layout
 
-      let centerOfCanvasX = (deriveView()?.frame.origin.x ?? 0) + ((deriveView()?.frame.size.width ?? 0) / 2)
-      let centerOfCanvasY = (deriveView()?.frame.origin.y ?? 0) + ((deriveView()?.frame.size.height ?? 0) / 2)
+    switch currentCanvasMode {
+    case .grid:       layout = Layout.GridLayout(elementCount: elements.count, canvasFrame: parentFrame)
+    case .timeSeries: layout = Layout.TimeSeriesLayout(dataPoints: datasource!.fetchItems(), divisionInSec: 30, canvasFrame: parentFrame)
+    case .histogram:  return
+    }
 
-      NSAnimationContext.runAnimationGroup { context in
+    for (index, _) in elements.enumerated() {
+      let cellRect = layout.frameRect(for: index)
 
-        for index in elementsAt {
-
-          let cellRect = layout.frameRect(for: index)
-
-          context.duration = 0.5
-          context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
-
-          contentElements[index].deriveView()?.setFrameOrigin(NSMakePoint(centerOfCanvasX, centerOfCanvasY))
-          contentElements[index].deriveView()?.animator().setFrameOrigin(cellRect.origin)
-          contentElements[index].deriveView()?.animator().setFrameSize(cellRect.size)
-        }
+      if isInitialLoad {
+        elements[index].loadingAnimation(to: cellRect)
+      }
+      else {
+        elements[index].transitionAnimation(to: cellRect)
       }
     }
   }
 }
 
 fileprivate class Layout {
-  private var elementCount: Int
   private var canvasFrame: NSRect
 
-  init(elementCount: Int, canvasFrame: NSRect) {
-    self.elementCount = elementCount
+  init(canvasFrame: NSRect) {
     self.canvasFrame = canvasFrame
   }
 
@@ -158,12 +142,14 @@ fileprivate class Layout {
     fatalError()
   }
 
-  private class GridLayout: Layout {
+  class GridLayout: Layout {
 
     private var rows: Int
     private var columns: Int
+    private var elementCount: Int
 
-    override init(elementCount: Int, canvasFrame: NSRect) {
+    init(elementCount: Int, canvasFrame: NSRect) {
+      self.elementCount = elementCount
       let aspectRatio: CGFloat = canvasFrame.width / canvasFrame.height
       let estimatedRows = floor(sqrt(Double(elementCount) / Double(aspectRatio)))
       let estimatedColumns = ceil(Double(elementCount) / estimatedRows)
@@ -171,7 +157,7 @@ fileprivate class Layout {
       rows = Int(estimatedRows)
       columns = Int(estimatedColumns)
 
-      super.init(elementCount: elementCount, canvasFrame: canvasFrame)
+      super.init(canvasFrame: canvasFrame)
     }
 
     override func cellSize() -> NSSize {
@@ -192,7 +178,7 @@ fileprivate class Layout {
     }
   }
 
-  private class HistogramLayout: Layout {
+  class HistogramLayout: Layout {
     public override func cellSize() -> NSSize {
       fatalError()
     }
@@ -202,24 +188,66 @@ fileprivate class Layout {
     }
   }
 
-  private class TimeSeriesLayout: Layout {
+  class TimeSeriesLayout: Layout {
+    private var gridLookup = [Int: (Int, Int)]()
+    private let rows: Int
+    private let columns: Int
+
+    init(dataPoints: [SimpleDataEntity], divisionInSec: TimeInterval, canvasFrame: NSRect) {
+
+      var earliestTime = Date.distantFuture
+      earliestTime = dataPoints.reduce(earliestTime) { previous, entity in
+        return min(previous, entity.time)
+      }
+
+      var latestTime = Date.distantPast
+      latestTime = dataPoints.reduce(latestTime) { previous, entity in
+        return max(previous, entity.time)
+      }
+
+      let timeDeltaInSec = latestTime.timeIntervalSince(earliestTime)
+
+      rows = Int(ceil(timeDeltaInSec / divisionInSec))
+
+      var layoutGrid = [[Int]]()
+      layoutGrid.reserveCapacity(rows)
+      for _ in 0..<rows {
+        layoutGrid.append([Int]())
+      }
+
+      var maxColumnsCount = 0
+
+      // Iterate to get the most entries
+      for (index, element) in dataPoints.enumerated() {
+        let targetRow = Int(floor(element.time.timeIntervalSince(earliestTime) / divisionInSec))
+
+        layoutGrid[targetRow].append(index)
+
+        gridLookup[index] = (targetRow, layoutGrid[targetRow].count - 1)
+
+        // update the maxColumnsCount
+        maxColumnsCount = max(maxColumnsCount, layoutGrid[targetRow].count)
+      }
+
+      columns = maxColumnsCount + 2 // give it a 2 column buffer
+
+      super.init(canvasFrame: canvasFrame)
+    }
+
     public override func cellSize() -> NSSize {
-      fatalError()
+      let width = canvasFrame.width / CGFloat(columns)
+      let height = canvasFrame.height / CGFloat(rows)
+
+      //let square = min(width, height)
+      let cellSize = NSMakeSize(width, height)
+      return cellSize
     }
 
     public override func frameRect(for cellElementAt: Int) -> NSRect {
-      fatalError()
-    }
-  }
-
-  static func createLayout(for mode: CanvasMode, elementCount: Int, canvasFrame: NSRect) -> Layout {
-    switch mode {
-    case .grid:
-      return GridLayout(elementCount: elementCount, canvasFrame: canvasFrame)
-    case .histogram:
-      return HistogramLayout(elementCount: elementCount, canvasFrame: canvasFrame)
-    case .timeSeries:
-      return TimeSeriesLayout(elementCount: elementCount, canvasFrame: canvasFrame)
+      let position = gridLookup[cellElementAt]!
+      let cellDim = cellSize()
+      let rect = NSMakeRect(CGFloat(position.1) * cellDim.width, CGFloat(position.0) * cellDim.height, cellDim.width, cellDim.height)
+      return rect
     }
   }
 }

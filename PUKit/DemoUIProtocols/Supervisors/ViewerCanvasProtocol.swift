@@ -10,6 +10,7 @@ import Foundation
 import PUKit
 
 public protocol ViewerCanvasProtocol: ViewerCanvasLayoutProtocol, PUKAnimationProtocol {
+  var elements: [ViewerCanvasElementProtocol] { get set }
   func setMode(to: CanvasMode)
   func addElementsToCanvas(elementsToAdd: [ViewerCanvasElementProtocol])
   func removeElementsFromCanvas(elementsToRemove: [ViewerCanvasElementProtocol])

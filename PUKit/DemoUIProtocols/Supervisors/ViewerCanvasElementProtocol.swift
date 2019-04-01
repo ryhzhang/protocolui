@@ -9,6 +9,11 @@
 import Foundation
 import PUKit
 
-public protocol ViewerCanvasElementProtocol: PUKLayoutProtocol, PUKAnimationProtocol, PUKEventProtocol {
+public protocol ViewerCanvasElementProtocol: NSObjectProtocol, PUKLayoutProtocol, ViewerCanvasElementAnimationProtocol, PUKEventProtocol {
 
+}
+
+public protocol ViewerCanvasElementAnimationProtocol: PUKAnimationProtocol {
+  func loadingAnimation(to targetFrame: NSRect)
+  func transitionAnimation(to targetFrame: NSRect)
 }

@@ -15,7 +15,7 @@ public enum CanvasMode: CaseIterable {
 }
 
 public extension CanvasMode {
-  public var localizedCaption: String {
+  var localizedCaption: String {
     switch self {
     case .grid:
       return NSLocalizedString("Grid", comment: "Grid view")

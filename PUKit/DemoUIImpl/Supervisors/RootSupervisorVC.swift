@@ -80,14 +80,14 @@ public final class RootSupervisorVC: NSViewController {
 
   private func navigationFrame(from frame: NSRect) -> NSRect {
     var rect: NSRect
-    rect = NSMakeRect(2, 2, frame.width * 0.2 - 2, frame.height - 4)
+    rect = NSMakeRect(2, 2, frame.width * 0.1 - 2, frame.height - 4)
     return rect
   }
 
   private func viewerCanvasFrame(from frame: NSRect) -> NSRect {
     var rect: NSRect
 
-    rect = NSMakeRect(frame.width * 0.2 - 2, 2, frame.width * 0.8 - 2, frame.height - 4)
+    rect = NSMakeRect(frame.width * 0.1 - 2, 2, frame.width * 0.9 - 2, frame.height - 4)
     return rect
   }
 }

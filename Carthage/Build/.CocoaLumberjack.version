@@ -3,11 +3,11 @@
   "Mac" : [
     {
       "name" : "CocoaLumberjackSwift",
-      "hash" : "b80f168ef654b4a8aa762db744f48eac879e9a8a30c62cf903e658cb736c83ff"
+      "hash" : "07710a10996ff37b4acaf278cfa55ec10e1bd75baa5ad3a003588bb0ebd99861"
     },
     {
       "name" : "CocoaLumberjack",
-      "hash" : "f0c2efda6b5732d17f4cb5ee730ec3584af66cb614017f30d948fb84ef025004"
+      "hash" : "9b66dbe6eb70726b1392a84336bfc4c4c4160c722e6e61eb9c238e5d9404da44"
     }
   ]
 }
